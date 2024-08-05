@@ -1,0 +1,58 @@
+// using or working with arrays and objects in state requires special care because of one simple rule
+// react will onlu update state if a new object/array is passed to setState
+// note - state can only hold any kind of javascript value including objects.
+// but you shouldnt change objects that you hold in the react state direclty.
+//  instead when to update an object you need to create a new one (or make a copy of an exisitng one) and then \
+// set state to ue that copy.
+
+// consider this example of a stateful component.
+ function Counter (){
+  const [count,setCount]=useState (0)
+  function handleClick(){
+    setCount((count)=> count + 1)
+  }
+  return <button onClick={handleClick}>{count}</button>
+ }
+
+//  consider the following 
+function Counter(){
+  const [count, setCount]= useState({x: 0});
+  function handleClick(){
+    // increament the count.
+    count.x++;
+    setCount((count))
+  }
+  return <button onClick={handleClick}>{count.x}</button>
+}
+
+// if we are running this example code, youll see that the component doesnt actually render with a new value.
+// this is because we're actually not providing a new value when we are calling setCount.
+// setting state with the same value will not cause React to render our componenet.
+// even though we have mutated the valuecount object, the count object is still the same object in memory.
+
+//  the following is how you create a new object sotre the originamobject insideit and mutate the object inside the new object 
+
+const count={x: 0}
+const alsoCount= count;
+console.log(alsoCount === count);
+ count.x++;
+  console.log(count.x === alsoCount.x);
+
+
+// this is how it is done to ensure that state is not passed the same value and that the component is rendered.
+function Counter (){
+  const[count, setCount]=useState({x:0})
+  function handleClick(){
+    setCount({x : count.x + 1})
+  }
+}
+//  in the example above we are updating state by creaitn a new object witht he increament value and setting state with that new object.
+// this rule must be followed when using arrays.
+
+// ADDING ELEMENTS TO ARRAYS IN STATE.
+// when we need to represent a list of data in our UI, it is often a good idea to have the data stores in and array.
+// build a component that does the following
+// - shows a button to generate a new spicy food.
+// - when the button is clicked, adds the new generated food to a list.
+
+REMOVING ELEMENTS FROM ARRAY IN STATE.
