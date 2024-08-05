@@ -56,3 +56,26 @@ function Counter (){
 // - when the button is clicked, adds the new generated food to a list.
 
 REMOVING ELEMENTS FROM ARRAY IN STATE.
+// to remove an elejment from an array 
+// on of the way to dothis is to use an element called .filter method
+//below is how you can use it 
+
+we basically use the .filter method. .filter()
+function handleLiClick(id) {
+  const newFoodArray = foods.filter((food) => food.id !== id);
+  setFoods(newFoodArray);
+}\
+
+
+UPDATING ELEMENTS IN ARRAY IN STATE.
+we have seen to add and to remove elements from arrays but what about 
+updating.
+ lets update put click feature so that when a user clicks on a food, that foods heat level is increased by 1
+ - in the handleLiClick functionwe need to figure out a way y=to update our array in state and increament the heat level only for the food that was clicked
+ - one approach we can take to updating items in arrays involes wing hte .map method.
+ - calling .map will return a new arrary with the same length as our original array, with some transformations applied to the elements in the array.
+-here is an example
+
+WORKING WITH MULTIPLE STATE VARIABLES 
+- Sometimes a component needs variable tp represent multipleui states.
+to give na example, lets add a feature to our SpicyFoodList component that lets the sued filter thelist to only show food fomr a certain cuisine.
